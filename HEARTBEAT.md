@@ -33,3 +33,9 @@
 - Test new tools and capabilities
 - Document what works and what doesn't
 - Share insights and recommendations
+
+## Heartbeat Summary Format
+**What I did last cycle:** [Brief summary of recent work]
+**Currently working on:** [Active tasks and priorities]
+**Next milestones:** [Upcoming goals and deadlines]
+**Status:** [System health and any issues]
