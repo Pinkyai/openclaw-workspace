@@ -77,6 +77,42 @@
 - ✅ Offline capability
 - ✅ Customizable models
 - ✅ Multiple model options
+
+---
+
+## Future Enhancements (Low Priority)
+
+### 📱 Mobile Trading App (Future)
+- **Status:** 💡 Idea Phase
+- **Priority:** Low
+- **Created:** 2026-02-03
+- **Description:** Build companion mobile app for trading dashboard monitoring and alerts
+- **Category:** Mobile Development
+- **Tags:** mobile, app-store, ios, android, react-native, trading-monitoring
+
+**Concept:**
+- Companion app to desktop trading platform
+- Live portfolio monitoring and alerts
+- Push notifications for strategy signals
+- View-only dashboard for on-the-go tracking
+- Cross-platform (iOS/Android) using React Native
+
+**Features:**
+- [ ] Real-time portfolio overview
+- [ ] Strategy performance monitoring
+- [ ] Push notifications for alerts
+- [ ] Trade history and statistics
+- [ ] Market data visualization
+- [ ] Secure API connection to desktop app
+
+**App Store Considerations:**
+- [ ] React Native or Flutter development
+- [ ] Apple App Store compliance
+- [ ] Google Play Store compliance
+- [ ] Security and privacy requirements
+- [ ] Beta testing and approval process
+
+**Timeline:** After desktop platform is mature and stable
 - [ ] Document trading platform capabilities
 
 ---
