@@ -42,6 +42,41 @@
 - [ ] Add skill discovery modules
 - [ ] Create monitoring and analytics dashboard
 - [ ] Test with paper trading strategies
+
+---
+
+## Future Enhancements
+
+### 🤖 Ollama Integration (High Priority - Future)
+- **Status:** 📋 Planned
+- **Priority:** High
+- **Created:** 2026-02-03
+- **Description:** Integrate local AI models via Ollama for cost efficiency and independence from paid APIs
+- **Category:** Infrastructure / AI Development
+- **Tags:** ollama, local-ai, cost-optimization, independence, llm
+
+**Implementation Phases:**
+- [ ] Install Ollama and test basic setup
+- [ ] Integrate Llama 2 7B as primary model (memory-efficient)
+- [ ] Build model switching logic (Ollama ↔ Kimi)
+- [ ] Add CodeLlama for programming tasks
+- [ ] Implement memory management for 16GB system
+- [ ] Create fallback mechanisms
+- [ ] Fine-tune models for trading applications
+
+**Memory Strategy:**
+- **Primary**: Llama 2 7B (~4-6GB RAM)
+- **Secondary**: CodeLlama 7B (~4GB RAM)
+- **Future**: Llama 2 13B for complex reasoning (~8GB RAM)
+- **Total**: Manage within 12GB of 16GB system memory
+
+**Benefits:**
+- ✅ Zero ongoing costs
+- ✅ No rate limits
+- ✅ Complete privacy
+- ✅ Offline capability
+- ✅ Customizable models
+- ✅ Multiple model options
 - [ ] Document trading platform capabilities
 
 ---
