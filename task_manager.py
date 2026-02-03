@@ -12,6 +12,7 @@ from datetime import datetime, date
 import webbrowser
 from pathlib import Path
 import shutil
+from trading_dashboard import open_trading_dashboard
 
 class Task:
     def __init__(self, title, description="", priority="Medium", status="Active", 
@@ -300,6 +301,14 @@ class TaskManagerApp:
         # Delete Task button
         delete_btn = ttk.Button(toolbar, text="Delete Task", command=self.delete_task)
         delete_btn.pack(side=tk.LEFT, padx=2)
+        
+        # Separator
+        ttk.Separator(toolbar, orient=tk.VERTICAL).pack(side=tk.LEFT, fill=tk.Y, padx=10)
+        
+        # Trading Dashboard button
+        trading_btn = ttk.Button(toolbar, text="📈 Trading Dashboard", command=self.open_trading_dashboard,
+                                style='Accent.TButton')
+        trading_btn.pack(side=tk.LEFT, padx=2)
         
         # Separator
         ttk.Separator(toolbar, orient=tk.VERTICAL).pack(side=tk.LEFT, fill=tk.Y, padx=10)
@@ -681,6 +690,13 @@ Completed: {task.completed_date or 'Not completed'}
                 ])
         
         messagebox.showinfo("Export Complete", f"Exported {len(self.task_manager.tasks)} tasks to CSV")
+    
+    def open_trading_dashboard(self):
+        """Open the trading performance dashboard"""
+        try:
+            open_trading_dashboard(self.root)
+        except Exception as e:
+            messagebox.showerror("Trading Dashboard Error", f"Failed to open trading dashboard: {str(e)}")
 
 class TaskDialog(tk.Toplevel):
     def __init__(self, parent, title, task=None):
