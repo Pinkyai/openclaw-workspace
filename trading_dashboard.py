@@ -3,7 +3,13 @@ from tkinter import ttk, messagebox, filedialog
 import json
 import os
 from datetime import datetime, date, timedelta
-import matplotlib.pyplot as plt
+# Try to import matplotlib, fall back to simple plotting
+try:
+    import matplotlib.pyplot as plt
+    HAS_MATPLOTLIB = True
+except ImportError:
+    HAS_MATPLOTLIB = False
+    from simple_plotting import SimpleDashboard, create_simple_chart
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 import numpy as np

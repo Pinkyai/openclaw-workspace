@@ -1,0 +1,14 @@
+[
+  {
+    "id": "task_20260203_171642",
+    "title": "Upgrade of Task Manager pro",
+    "description": "This can be a nice base but please make it look more modern, this kind of look we had when windows 95 was on a top",
+    "priority": "High",
+    "status": "Active",
+    "category": "General",
+    "tags": [],
+    "due_date": null,
+    "created_date": "2026-02-03 17:16",
+    "completed_date": null
+  }
+]
