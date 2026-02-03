@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CleanTodo - Modern Task Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1 class="app-title">
+                <i class="fas fa-check-circle"></i>
+                CleanTodo
+            </h1>
+            <div class="header-stats">
+                <span class="task-counter">
+                    <span id="completed-count">0</span> / <span id="total-count">0</span>
+                </span>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <section class="task-input-section">
+                <form id="task-form" class="task-form">
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            id="task-input" 
+                            class="task-input" 
+                            placeholder="What needs to be done?"
+                            autocomplete="off"
+                            required
+                        >
+                        <button type="submit" class="add-btn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="task-meta">
+                        <select id="category-select" class="category-select">
+                            <option value="">Select category</option>
+                            <option value="work">Work</option>
+                            <option value="personal">Personal</option>
+                            <option value="shopping">Shopping</option>
+                            <option value="health">Health</option>
+                            <option value="learning">Learning</option>
+                        </select>
+                        <input 
+                            type="text" 
+                            id="tag-input" 
+                            class="tag-input" 
+                            placeholder="Add tags (comma-separated)"
+                        >
+                    </div>
+                </form>
+            </section>
+
+            <section class="filters-section">
+                <div class="filter-tabs">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-list"></i>
+                        All
+                    </button>
+                    <button class="filter-btn" data-filter="active">
+                        <i class="fas fa-clock"></i>
+                        Active
+                    </button>
+                    <button class="filter-btn" data-filter="completed">
+                        <i class="fas fa-check"></i>
+                        Completed
+                    </button>
+                </div>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Search tasks...">
+                </div>
+            </section>
+
+            <section class="tasks-section">
+                <div id="tasks-container" class="tasks-container">
+                    <!-- Tasks will be dynamically inserted here -->
+                </div>
+                <div id="empty-state" class="empty-state">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h3>No tasks yet</h3>
+                    <p>Add your first task above to get started!</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <div class="footer-actions">
+                <button id="clear-completed" class="footer-btn">
+                    <i class="fas fa-trash-alt"></i>
+                    Clear Completed
+                </button>
+                <button id="export-tasks" class="footer-btn">
+                    <i class="fas fa-download"></i>
+                    Export
+                </button>
+                <button id="import-tasks" class="footer-btn">
+                    <i class="fas fa-upload"></i>
+                    Import
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <input type="file" id="import-file" accept=".json" style="display: none;">
+    <script src="app.js"></script>
+</body>
+</html>

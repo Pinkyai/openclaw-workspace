@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sebastian's Task Hub - Managed by Pinky 🐙</title>
+    <link rel="stylesheet" href="task-hub.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="app-title">
+                    <i class="fas fa-tasks"></i>
+                    Task Hub
+                </h1>
+                <div class="header-meta">
+                    <span class="ai-badge">
+                        <i class="fas fa-robot"></i>
+                        Managed by Pinky
+                    </span>
+                    <span class="last-updated">
+                        Last updated: <span id="last-update">Just now</span>
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <section class="stats-section">
+                <div class="stat-card">
+                    <div class="stat-number" id="active-count">0</div>
+                    <div class="stat-label">Active</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="completed-count">0</div>
+                    <div class="stat-label">Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-count">0</div>
+                    <div class="stat-label">Total</div>
+                </div>
+            </section>
+
+            <section class="task-input-section">
+                <h2>Add New Task</h2>
+                <form id="task-form" class="task-form">
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            id="task-input" 
+                            class="task-input" 
+                            placeholder="What should Pinky help you with?"
+                            autocomplete="off"
+                            required
+                        >
+                        <button type="submit" class="add-btn">
+                            <i class="fas fa-plus"></i>
+                            Add Task
+                        </button>
+                    </div>
+                    <div class="task-meta">
+                        <select id="priority-select" class="priority-select">
+                            <option value="low">Low Priority</option>
+                            <option value="medium" selected>Medium Priority</option>
+                            <option value="high">High Priority</option>
+                            <option value="urgent">Urgent</option>
+                        </select>
+                        <input 
+                            type="text" 
+                            id="category-input" 
+                            class="category-input" 
+                            placeholder="Category (e.g., Trading, AI, Personal)"
+                        >
+                    </div>
+                </form>
+            </section>
+
+            <section class="tasks-section">
+                <div class="section-header">
+                    <h2>Active Tasks</h2>
+                    <div class="section-actions">
+                        <button id="refresh-btn" class="action-btn">
+                            <i class="fas fa-sync-alt"></i>
+                            Refresh
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="active-tasks" class="tasks-container">
+                    <!-- Active tasks will be loaded here -->
+                </div>
+                
+                <div id="no-active-tasks" class="empty-state">
+                    <i class="fas fa-clipboard-check"></i>
+                    <h3>No active tasks</h3>
+                    <p>Add a task above and Pinky will help you track it!</p>
+                </div>
+            </section>
+
+            <section class="completed-section">
+                <div class="section-header">
+                    <h2>Recently Completed</h2>
+                    <button id="clear-completed" class="action-btn secondary">
+                        <i class="fas fa-trash-alt"></i>
+                        Clear All
+                    </button>
+                </div>
+                
+                <div id="completed-tasks" class="tasks-container completed">
+                    <!-- Completed tasks will be loaded here -->
+                </div>
+                
+                <div id="no-completed-tasks" class="empty-state">
+                    <i class="fas fa-trophy"></i>
+                    <h3>No completed tasks yet</h3>
+                    <p>Let's get some wins! 🎯</p>
+                </div>
+            </section>
+
+            <section class="ai-notes-section">
+                <h2><i class="fas fa-brain"></i> Pinky's Notes</h2>
+                <div id="ai-notes" class="ai-notes">
+                    <div class="note-item">
+                        <i class="fas fa-robot"></i>
+                        <div class="note-content">
+                            <p>Ready to help you tackle your tasks! I'm particularly excited about the trading platform project - that's going to be fun to build. 🚀</p>
+                            <small>Just now</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <div class="footer-content">
+                <p><i class="fas fa-octopus"></i> Managed by Pinky - Your AI Assistant</p>
+                <p class="footer-note">Tasks are automatically synced and updated</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="task-hub.js"></script>
+</body>
+</html>
