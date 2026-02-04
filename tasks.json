@@ -1,26 +1,46 @@
 [
   {
-    "id": "task_20260203_171642",
-    "title": "Upgrade of Task Manager pro",
-    "description": "This can be a nice base but please make it look more modern, this kind of look we had when windows 95 was on a top",
+    "id": 1,
+    "title": "Set up Claude API integration",
+    "description": "Configure Claude API for better coding assistance and task management",
+    "category": "Work",
     "priority": "High",
-    "status": "Active",
-    "category": "General",
-    "tags": [],
-    "due_date": null,
-    "created_date": "2026-02-03 17:16",
-    "completed_date": null
+    "status": "Done",
+    "due_date": "2026-02-03",
+    "progress": 100,
+    "created_date": "2026-02-03 22:25:00"
   },
   {
-    "id": "task_20260203_171720",
-    "title": "Trading dashboard and platform",
-    "description": "just make it work",
+    "id": 2,
+    "title": "Create Task Manager GUI",
+    "description": "Build comprehensive task management application with Python and tkinter",
+    "category": "Work",
+    "priority": "High",
+    "status": "Done",
+    "due_date": "2026-02-03",
+    "progress": 100,
+    "created_date": "2026-02-03 22:26:00"
+  },
+  {
+    "id": 3,
+    "title": "Test task manager functionality",
+    "description": "Test all features including task creation, editing, filtering, and data persistence",
+    "category": "Work",
     "priority": "Medium",
-    "status": "Active",
-    "category": "General",
-    "tags": [],
-    "due_date": null,
-    "created_date": "2026-02-03 17:17",
-    "completed_date": null
+    "status": "In Progress",
+    "due_date": "2026-02-04",
+    "progress": 75,
+    "created_date": "2026-02-03 22:27:00"
+  },
+  {
+    "id": 4,
+    "title": "Add export/import features",
+    "description": "Implement JSON and CSV export/import functionality for task data",
+    "category": "Work",
+    "priority": "Medium",
+    "status": "To Do",
+    "due_date": "2026-02-05",
+    "progress": 0,
+    "created_date": "2026-02-03 22:28:00"
   }
 ]

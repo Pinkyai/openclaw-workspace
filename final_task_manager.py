@@ -111,7 +111,39 @@ class ModernTaskManager:
         title_label = tk.Label(self.root, text="Modern Task Manager", 
                               font=self.title_font, fg=self.colors['accent'], 
                               bg=self.colors['bg'])
-        title_label.pack(pady=20)
+        title_label.pack(pady=10)
+        
+        # Search and filter frame
+        filter_frame = tk.Frame(self.root, bg=self.colors['bg'])
+        filter_frame.pack(fill='x', padx=20, pady=10)
+        
+        # Search entry
+        self.search_var = tk.StringVar()
+        self.search_var.trace('w', lambda name, index, mode: self.display_tasks())
+        search_entry = tk.Entry(filter_frame, textvariable=self.search_var,
+                               font=self.body_font, bg=self.colors['card_bg'], 
+                               fg=self.colors['fg'], insertbackground=self.colors['fg'],
+                               relief='flat', bd=1)
+        search_entry.pack(side='left', fill='x', expand=True, padx=(0, 10))
+        search_entry.insert(0, "Search tasks...")
+        search_entry.bind('<FocusIn>', lambda e: search_entry.delete(0, tk.END) if search_entry.get() == "Search tasks..." else None)
+        search_entry.bind('<FocusOut>', lambda e: search_entry.insert(0, "Search tasks...") if not search_entry.get() else None)
+        
+        # Filter by status
+        self.status_filter = tk.StringVar(value="All")
+        status_combo = tk.OptionMenu(filter_frame, self.status_filter, "All", "Active", "Completed")
+        status_combo.config(font=self.small_font, bg=self.colors['button_bg'], fg=self.colors['button_fg'],
+                           relief='flat', bd=1)
+        status_combo.pack(side='left', padx=5)
+        self.status_filter.trace('w', lambda name, index, mode: self.display_tasks())
+        
+        # Filter by priority
+        self.priority_filter = tk.StringVar(value="All")
+        priority_combo = tk.OptionMenu(filter_frame, self.priority_filter, "All", "High", "Medium", "Low")
+        priority_combo.config(font=self.small_font, bg=self.colors['button_bg'], fg=self.colors['button_fg'],
+                             relief='flat', bd=1)
+        priority_combo.pack(side='left', padx=5)
+        self.priority_filter.trace('w', lambda name, index, mode: self.display_tasks())
         
         # Main container
         main_container = tk.Frame(self.root, bg=self.colors['bg'])
@@ -162,12 +194,20 @@ class ModernTaskManager:
         status_frame = tk.Frame(self.root, bg=self.colors['bg'])
         status_frame.pack(fill='x', padx=20, pady=10)
         
+        # Task statistics
+        self.stats_label = tk.Label(status_frame, 
+                                   text="", 
+                                   font=self.small_font, 
+                                   fg=self.colors['secondary'], 
+                                   bg=self.colors['bg'])
+        self.stats_label.pack(side='left')
+        
         self.status_label = tk.Label(status_frame, 
                                     text="Ready", 
                                     font=self.small_font, 
                                     fg=self.colors['secondary'], 
                                     bg=self.colors['bg'])
-        self.status_label.pack()
+        self.status_label.pack(side='right')
         
         # Load initial tasks
         self.display_tasks()
@@ -260,22 +300,54 @@ class ModernTaskManager:
                                 command=self.clear_form, cursor='hand2')
         clear_button.pack(side='left', padx=5)
     
+    def update_statistics(self):
+        """Update task statistics"""
+        total = len(self.tasks)
+        active = len([t for t in self.tasks if t.status == "Active"])
+        completed = len([t for t in self.tasks if t.status == "Completed"])
+        high_priority = len([t for t in self.tasks if t.priority == "High"])
+        
+        self.stats_label.config(text=f"Total: {total} | Active: {active} | Completed: {completed} | High Priority: {high_priority}")
+    
     def display_tasks(self):
-        """Display all tasks in modern format"""
+        """Display filtered tasks in modern format"""
+        # Update statistics
+        self.update_statistics()
+        
         # Clear existing tasks
         for widget in self.task_container.winfo_children():
             widget.destroy()
         
-        if not self.tasks:
+        # Apply filters
+        filtered_tasks = self.tasks.copy()
+        
+        # Search filter
+        search_text = self.search_var.get().lower()
+        if search_text and search_text != "search tasks...":
+            filtered_tasks = [task for task in filtered_tasks 
+                            if search_text in task.title.lower() or 
+                               search_text in task.description.lower()]
+        
+        # Status filter
+        if self.status_filter.get() != "All":
+            filtered_tasks = [task for task in filtered_tasks 
+                            if task.status == self.status_filter.get()]
+        
+        # Priority filter
+        if self.priority_filter.get() != "All":
+            filtered_tasks = [task for task in filtered_tasks 
+                            if task.priority == self.priority_filter.get()]
+        
+        if not filtered_tasks:
             no_tasks_label = tk.Label(self.task_container, 
-                                     text="No tasks yet. Add your first task!", 
+                                     text="No tasks found matching your filters." if (search_text and search_text != "search tasks...") or self.status_filter.get() != "All" or self.priority_filter.get() != "All" else "No tasks yet. Add your first task!", 
                                      font=self.body_font, 
                                      fg=self.colors['secondary'], 
                                      bg=self.colors['card_bg'])
             no_tasks_label.pack(pady=50)
             return
         
-        for i, task in enumerate(self.tasks, 1):
+        for i, task in enumerate(filtered_tasks, 1):
             task_card = tk.Frame(self.task_container, bg=self.colors['card_bg'], 
                                 relief='flat', bd=1)
             task_card.pack(fill='x', padx=10, pady=8)
@@ -337,29 +409,55 @@ class ModernTaskManager:
                                            command=lambda t=task: self.complete_task(t), 
                                            cursor='hand2')
                 complete_button.pack(side='left', padx=5)
+            
+            delete_button = tk.Button(button_frame, text="Delete", 
+                                     font=self.small_font, 
+                                     bg='#ff4757', 
+                                     fg='white', relief='flat', 
+                                     command=lambda t=task: self.delete_task(t), 
+                                     cursor='hand2')
+            delete_button.pack(side='right', padx=5)
     
     def save_task(self):
-        """Save current task"""
+        """Save current task (add new or update existing)"""
         title = self.title_entry.get().strip()
         if not title:
             messagebox.showwarning("Warning", "Title cannot be empty!")
             return
         
-        # Create new task
-        task = ModernTask(
-            title=title,
-            description=self.description_text.get('1.0', tk.END).strip(),
-            priority=self.priority_var.get(),
-            status=self.status_var.get(),
-            due_date=self.due_date_entry.get().strip() or None
-        )
+        # Check if we're editing an existing task
+        current_task_title = self.title_entry.get().strip()
+        existing_task = None
+        for task in self.tasks:
+            if task.title == current_task_title and task.created_date != datetime.now().strftime("%Y-%m-%d %H:%M"):
+                existing_task = task
+                break
         
-        self.tasks.append(task)
+        if existing_task:
+            # Update existing task
+            existing_task.title = title
+            existing_task.description = self.description_text.get('1.0', tk.END).strip()
+            existing_task.priority = self.priority_var.get()
+            existing_task.status = self.status_var.get()
+            existing_task.due_date = self.due_date_entry.get().strip() or None
+            message = f"Task '{title}' updated successfully!"
+        else:
+            # Create new task
+            task = ModernTask(
+                title=title,
+                description=self.description_text.get('1.0', tk.END).strip(),
+                priority=self.priority_var.get(),
+                status=self.status_var.get(),
+                due_date=self.due_date_entry.get().strip() or None
+            )
+            self.tasks.append(task)
+            message = f"Task '{title}' saved successfully!"
+        
         self.save_tasks()
         self.display_tasks()
         self.clear_form()
         
-        self.status_label.config(text=f"Task '{title}' saved successfully!")
+        self.status_label.config(text=message)
     
     def edit_task(self, task):
         """Edit existing task"""
@@ -385,6 +483,20 @@ class ModernTaskManager:
         self.save_tasks()
         self.display_tasks()
         self.status_label.config(text=f"Task '{task.title}' completed!")
+    
+    def delete_task(self, task):
+        """Delete a task"""
+        result = messagebox.askyesno("Confirm Delete", f"Are you sure you want to delete '{task.title}'?")
+        if result:
+            self.tasks.remove(task)
+            self.save_tasks()
+            self.display_tasks()
+            self.clear_form()
+            self.status_label.config(text=f"Task '{task.title}' deleted successfully!")
+    
+    def add_task(self):
+        """Add a new task"""
+        self.save_task()  # Reuse the save_task method for adding new tasks
     
     def clear_form(self):
         """Clear the task form"""
