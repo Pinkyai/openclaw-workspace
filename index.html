@@ -3,124 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pinky API Configuration - CLAUDE MODE</title>
-    <link rel="stylesheet" href="config-styles.css">
+    <title>Modern Dark Website</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="config-container">
-        <header class="config-header">
-            <h1>🐙 Pinky Configuration - CLAUDE MODE ACTIVE</h1>
-            <p>Update Claude API key and settings (Claude is now the primary model)</p>
-        </header>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>LOGO</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
 
-        <main class="config-main">
-            <div class="config-section">
-                <h2>🎯 PRIMARY MODEL: CLAUDE</h2>
-                <div class="alert-box claude-mode">
-                    <strong>✅ Claude is now the default model</strong>
-                    <p>All requests will use Claude API unless specified otherwise</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1 class="hero-title">Welcome to the Future</h1>
+            <p class="hero-subtitle">Experience modern design with our dark-themed website</p>
+            <button class="cta-button">Get Started</button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Features</h2>
+                <p>Discover what makes us special</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Fast Performance</h3>
+                    <p>Lightning-fast loading times and smooth interactions</p>
                 </div>
-                
-                <div class="form-group">
-                    <label for="claude-key">Claude API Key (REQUIRED)</label>
-                    <div class="input-container">
-                        <input type="password" id="claude-key" placeholder="sk-ant-api03-..." required />
-                        <button class="toggle-visibility" onclick="toggleVisibility('claude-key')">👁</button>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Modern Design</h3>
+                    <p>Clean, minimalist design with attention to detail</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Responsive</h3>
+                    <p>Perfect experience on all devices and screen sizes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="content">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-text">
+                    <h2>Built for Tomorrow</h2>
+                    <p>Our platform combines cutting-edge technology with intuitive design to deliver an unparalleled user experience. Every element is carefully crafted to ensure maximum impact and usability.</p>
+                    <button class="secondary-button">Learn More</button>
+                </div>
+                <div class="content-image">
+                    <div class="placeholder-image">
+                        <span>Image Placeholder</span>
                     </div>
-                    <small>Your Anthropic Claude API key - this is now the main brain</small>
-                </div>
-
-                <div class="form-group">
-                    <label for="claude-model">Claude Model</label>
-                    <select id="claude-model">
-                        <option value="claude-3-haiku-20240307" selected>Claude 3 Haiku (Fast & Cheap)</option>
-                        <option value="claude-3-sonnet-20240229">Claude 3 Sonnet (Balanced)</option>
-                        <option value="claude-3-opus-20240229">Claude 3 Opus (Most Capable)</option>
-                    </select>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="config-section">
-                <h2>⚙️ Backup Models (Optional)</h2>
-                <div class="form-group">
-                    <label for="openai-key">OpenAI API Key (Backup)</label>
-                    <div class="input-container">
-                        <input type="password" id="openai-key" placeholder="sk-..." />
-                        <button class="toggle-visibility" onclick="toggleVisibility('openai-key')">👁</button>
-                    </div>
-                    <small>Backup API key (only used if Claude fails)</small>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
                 </div>
-
-                <div class="form-group">
-                    <label for="kimi-key">Kimi API Key (Backup)</label>
-                    <div class="input-container">
-                        <input type="password" id="kimi-key" placeholder="85869..." />
-                        <button class="toggle-visibility" onclick="toggleVisibility('kimi-key')">👁</button>
-                    </div>
-                    <small>Backup API key (only used if both Claude and OpenAI fail)</small>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
                 </div>
-            </div>
-
-            <div class="config-section">
-                <h2>🧠 Thinking Settings</h2>
-                <div class="form-group">
-                    <label for="thinking-mode">Claude Thinking Mode</label>
-                    <select id="thinking-mode">
-                        <option value="off">Off (Fast responses)</option>
-                        <option value="on" selected>On (Better reasoning)</option>
-                        <option value="stream">Stream (Real-time thinking)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="max-tokens">Max Response Tokens</label>
-                    <input type="range" id="max-tokens" min="1000" max="8000" value="4000" />
-                    <span id="max-tokens-value">4000</span>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">GitHub</a></li>
+                    </ul>
                 </div>
             </div>
-
-            <div class="config-section">
-                <h2>🔧 System Settings</h2>
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" id="auto-claude-fallback" checked />
-                        Auto-fallback to Claude if primary model fails
-                    </label>
-                </div>
-
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" id="cost-optimization" checked />
-                        Use cheapest suitable model
-                    </label>
-                </div>
-
-                <div class="form-group">
-                    <label for="log-level">Log Level</label>
-                    <select id="log-level">
-                        <option value="debug">Debug</option>
-                        <option value="info" selected>Info</option>
-                        <option value="warning">Warning</option>
-                        <option value="error">Error</option>
-                    </select>
-                </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Modern Dark Website. All rights reserved.</p>
             </div>
+        </div>
+    </footer>
 
-            <div class="button-group">
-                <button class="save-button" onclick="saveConfig()">💾 Save Claude Settings</button>
-                <button class="test-button" onclick="testClaudeAPI()">🧪 Test Claude API</button>
-                <button class="switch-button" onclick="switchModel()">🔄 Switch Primary Model</button>
-            </div>
-
-            <div class="status-message" id="status-message"></div>
-        </main>
-
-        <footer class="config-footer">
-            <p>🎯 Claude is now your primary AI brain</p>
-            <p>💡 All requests will use Claude unless specified otherwise</p>
-        </footer>
-    </div>
-
-    <script src="claude-config.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -38,7 +38,7 @@ class ClaudeConfigManager {
         // Default Claude-primary configuration
         return {
             apiKeys: {
-                claude: '',
+                claude: '[YOUR_CLAUDE_API_KEY]',
                 openai: '',
                 kimi: ''
             },
