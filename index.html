@@ -3,157 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern SaaS Platform</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Pinky API Configuration - CLAUDE MODE</title>
+    <link rel="stylesheet" href="config-styles.css">
 </head>
 <body>
-    <div class="gradient-bg">
-        <div class="container">
-            <header class="header">
-                <nav class="navbar">
-                    <div class="logo">
-                        <h1>YourBrand</h1>
-                    </div>
-                    <ul class="nav-links">
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                    <div class="nav-buttons">
-                        <button class="btn btn-outline">Sign In</button>
-                        <button class="btn btn-primary">Get Started</button>
-                    </div>
-                </nav>
-            </header>
+    <div class="config-container">
+        <header class="config-header">
+            <h1>🐙 Pinky Configuration - CLAUDE MODE ACTIVE</h1>
+            <p>Update Claude API key and settings (Claude is now the primary model)</p>
+        </header>
 
-            <main class="main-content">
-                <section class="hero" id="home">
-                    <div class="hero-content">
-                        <h1 class="hero-title">Build Something Amazing Today</h1>
-                        <p class="hero-subtitle">Transform your business with our cutting-edge platform. Join thousands of companies already using our solution to grow faster and smarter.</p>
-                        <div class="hero-buttons">
-                            <button class="btn btn-primary btn-large">Start Free Trial</button>
-                            <button class="btn btn-secondary btn-large">Watch Demo</button>
-                        </div>
-                        <div class="hero-stats">
-                            <div class="stat">
-                                <span class="stat-number">10K+</span>
-                                <span class="stat-label">Active Users</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-number">99.9%</span>
-                                <span class="stat-label">Uptime</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-number">4.9/5</span>
-                                <span class="stat-label">Rating</span>
-                            </div>
-                        </div>
+        <main class="config-main">
+            <div class="config-section">
+                <h2>🎯 PRIMARY MODEL: CLAUDE</h2>
+                <div class="alert-box claude-mode">
+                    <strong>✅ Claude is now the default model</strong>
+                    <p>All requests will use Claude API unless specified otherwise</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="claude-key">Claude API Key (REQUIRED)</label>
+                    <div class="input-container">
+                        <input type="password" id="claude-key" placeholder="sk-ant-api03-..." required />
+                        <button class="toggle-visibility" onclick="toggleVisibility('claude-key')">👁</button>
                     </div>
-                </section>
-            </main>
-        </div>
+                    <small>Your Anthropic Claude API key - this is now the main brain</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="claude-model">Claude Model</label>
+                    <select id="claude-model">
+                        <option value="claude-3-haiku-20240307" selected>Claude 3 Haiku (Fast & Cheap)</option>
+                        <option value="claude-3-sonnet-20240229">Claude 3 Sonnet (Balanced)</option>
+                        <option value="claude-3-opus-20240229">Claude 3 Opus (Most Capable)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="config-section">
+                <h2>⚙️ Backup Models (Optional)</h2>
+                <div class="form-group">
+                    <label for="openai-key">OpenAI API Key (Backup)</label>
+                    <div class="input-container">
+                        <input type="password" id="openai-key" placeholder="sk-..." />
+                        <button class="toggle-visibility" onclick="toggleVisibility('openai-key')">👁</button>
+                    </div>
+                    <small>Backup API key (only used if Claude fails)</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="kimi-key">Kimi API Key (Backup)</label>
+                    <div class="input-container">
+                        <input type="password" id="kimi-key" placeholder="85869..." />
+                        <button class="toggle-visibility" onclick="toggleVisibility('kimi-key')">👁</button>
+                    </div>
+                    <small>Backup API key (only used if both Claude and OpenAI fail)</small>
+                </div>
+            </div>
+
+            <div class="config-section">
+                <h2>🧠 Thinking Settings</h2>
+                <div class="form-group">
+                    <label for="thinking-mode">Claude Thinking Mode</label>
+                    <select id="thinking-mode">
+                        <option value="off">Off (Fast responses)</option>
+                        <option value="on" selected>On (Better reasoning)</option>
+                        <option value="stream">Stream (Real-time thinking)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="max-tokens">Max Response Tokens</label>
+                    <input type="range" id="max-tokens" min="1000" max="8000" value="4000" />
+                    <span id="max-tokens-value">4000</span>
+                </div>
+            </div>
+
+            <div class="config-section">
+                <h2>🔧 System Settings</h2>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="auto-claude-fallback" checked />
+                        Auto-fallback to Claude if primary model fails
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="cost-optimization" checked />
+                        Use cheapest suitable model
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="log-level">Log Level</label>
+                    <select id="log-level">
+                        <option value="debug">Debug</option>
+                        <option value="info" selected>Info</option>
+                        <option value="warning">Warning</option>
+                        <option value="error">Error</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="save-button" onclick="saveConfig()">💾 Save Claude Settings</button>
+                <button class="test-button" onclick="testClaudeAPI()">🧪 Test Claude API</button>
+                <button class="switch-button" onclick="switchModel()">🔄 Switch Primary Model</button>
+            </div>
+
+            <div class="status-message" id="status-message"></div>
+        </main>
+
+        <footer class="config-footer">
+            <p>🎯 Claude is now your primary AI brain</p>
+            <p>💡 All requests will use Claude unless specified otherwise</p>
+        </footer>
     </div>
 
-    <section class="features" id="features">
-        <div class="container">
-            <div class="features-header">
-                <h2>Everything You Need to Succeed</h2>
-                <p>Powerful features designed to help you grow your business</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <div class="icon-circle">
-                            <span>🚀</span>
-                        </div>
-                    </div>
-                    <h3>Lightning Fast</h3>
-                    <p>Optimized for speed and performance. Get results in seconds, not minutes.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <div class="icon-circle">
-                            <span>🎨</span>
-                        </div>
-                    </div>
-                    <h3>Beautiful Design</h3>
-                    <p>Stunning, modern interface that your users will love and enjoy using.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <div class="icon-circle">
-                            <span>🔒</span>
-                        </div>
-                    </div>
-                    <h3>Enterprise Security</h3>
-                    <p>Bank-level security with advanced encryption and compliance standards.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Get Started?</h2>
-                <p>Join over 10,000 businesses already growing with our platform</p>
-                <div class="cta-buttons">
-                    <button class="btn btn-primary btn-large">Start Your Free Trial</button>
-                    <button class="btn btn-outline">Schedule Demo</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Product</h3>
-                    <ul>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="#integrations">Integrations</a></li>
-                        <li><a href="#updates">Updates</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Company</h3>
-                    <ul>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#blog">Blog</a></li>
-                        <li><a href="#careers">Careers</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="#docs">Documentation</a></li>
-                        <li><a href="#help">Help Center</a></li>
-                        <li><a href="#api">API Reference</a></li>
-                        <li><a href="#community">Community</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Legal</h3>
-                    <ul>
-                        <li><a href="#privacy">Privacy</a></li>
-                        <li><a href="#terms">Terms</a></li>
-                        <li><a href="#security">Security</a></li>
-                        <li><a href="#cookies">Cookies</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 YourBrand. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="app.js"></script>
+    <script src="claude-config.js"></script>
 </body>
 </html>
